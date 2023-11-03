@@ -1,0 +1,12 @@
+.container {
+  display: flex;
+  position: relative;
+}
+
+/* Base */
+
+.base {
+  background-image: url("../../assets/ps4/white/base.svg");
+  width: 806px;
+  height: 599px;
+}

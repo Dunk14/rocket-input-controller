@@ -1,0 +1,22 @@
+.triggers {
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  width: 588px;
+  left: 50%;
+  transform: translate(-50%, 0px);
+}
+
+.trigger {
+  background-image: url("../../../assets/ps4/white/triggers.svg");
+  /* Half of image */
+  width: 100px;
+  height: 91px;
+}
+
+.trigger.left {
+  background-position-x: left;
+}
+.trigger.right {
+  background-position-x: right;
+}
