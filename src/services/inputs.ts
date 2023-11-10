@@ -19,6 +19,23 @@ export enum ControllerInputs {
   TriggerRight = "triggerRight",
 }
 
+export enum OptionalControllerInputs {
+  None = "none",
+}
+
+type OptionalControllerInputsType = ControllerInputs | OptionalControllerInputs;
+
+export enum ControllerMappings {
+  Throttle = "throttle",
+  Brake = "brake",
+  Jump = "jump",
+  Boost = "boost",
+  HandBrake = "handBrake",
+  DirectionalAirRoll = "directionalAirRoll",
+  AirRollLeft = "airRollLeft",
+  AirRollRight = "airRollRight",
+}
+
 export type ControllerMapping = {
   throttle: ControllerInputs;
   brake: ControllerInputs;
@@ -26,36 +43,39 @@ export type ControllerMapping = {
   boost: ControllerInputs;
   handBrake: ControllerInputs;
   directionalAirRoll: ControllerInputs;
-  airRollLeft?: ControllerInputs;
-  airRollRight?: ControllerInputs;
+  airRollLeft: OptionalControllerInputsType;
+  airRollRight: OptionalControllerInputsType;
 };
 
-export const STORAGE_KEY = "RocketInputController_Mapping";
+const STORAGE_KEY = "RocketInputController_Mapping";
 
-const defaultMapping: ControllerMapping = {
+export const defaultMapping: ControllerMapping = {
   throttle: ControllerInputs.TriggerRight,
   brake: ControllerInputs.TriggerLeft,
   jump: ControllerInputs.FaceDown,
   boost: ControllerInputs.FaceRight,
   handBrake: ControllerInputs.FaceLeft,
   directionalAirRoll: ControllerInputs.FaceLeft,
+  airRollLeft: OptionalControllerInputs.None,
+  airRollRight: OptionalControllerInputs.None,
 };
 
-export async function setControllerMapping(
+export async function saveControllerMapping(
   controllerMapping: ControllerMapping,
 ) {
   return localforage.setItem(STORAGE_KEY, controllerMapping);
 }
 
 export async function getControllerMapping(): Promise<ControllerMapping> {
-  const controllerMapping =
-    await localforage.getItem<ControllerMapping>(STORAGE_KEY);
+  const controllerMapping = await localforage.getItem<ControllerMapping>(
+    STORAGE_KEY,
+  );
 
   if (controllerMapping) {
     return controllerMapping;
   }
 
-  // When no mapping save in storage, set the default one
-  await setControllerMapping(defaultMapping);
+  // When no mapping saved in storage, set the default one
+  await saveControllerMapping(defaultMapping);
   return defaultMapping;
 }

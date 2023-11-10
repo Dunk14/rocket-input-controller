@@ -1,4 +1,6 @@
+import equal from "fast-deep-equal";
 import { ControllerInputs, ControllerMapping } from "../services/inputs";
+import { getBoolean, getNumber } from "./values";
 
 export type RawInput = {
   time: number;
@@ -85,43 +87,6 @@ export type ControllerInput = {
   triggers?: Triggers;
 };
 
-function getValue(
-  input: RawInput,
-  controllerMappingKey: keyof ControllerMapping,
-): boolean | number {
-  if (controllerMappingKey === "throttle") {
-    return input.throttle > 0 ? input.throttle : 0;
-  } else if (controllerMappingKey === "brake") {
-    return input.throttle < 0 ? input.throttle : 0;
-  } else if (controllerMappingKey === "airRollLeft") {
-    return !input.directionalAirRoll && input.roll < 0 ? input.roll : 0;
-  } else if (controllerMappingKey === "airRollRight") {
-    return !input.directionalAirRoll && input.roll > 0 ? input.roll : 0;
-  }
-
-  return input[controllerMappingKey];
-}
-
-function getBoolean(
-  input: RawInput,
-  controllerMappingKey?: keyof ControllerMapping,
-): boolean {
-  if (!controllerMappingKey) return false;
-
-  const value = getValue(input, controllerMappingKey);
-  return typeof value === "number" ? value >= 0.5 : value;
-}
-
-function getNumber(
-  input: RawInput,
-  controllerMappingKey?: keyof ControllerMapping,
-): number {
-  if (!controllerMappingKey) return 0;
-
-  const value = getValue(input, controllerMappingKey);
-  return typeof value === "boolean" ? (value ? 1 : 0) : value;
-}
-
 export function rawToController(
   rawInputs: RawInput[],
   controllerMapping: ControllerMapping,
@@ -132,9 +97,11 @@ export function rawToController(
   const mappingValues = Object.values(controllerMapping);
 
   // Get each input mapped by user
-  const inputMapping = Object.values(ControllerInputs).reduce<{
-    [key in ControllerInputs]?: keyof ControllerMapping;
-  }>((inputs, input) => {
+  const inputMapping = Object.values(ControllerInputs).reduce<
+    {
+      [key in ControllerInputs]?: keyof ControllerMapping;
+    }
+  >((inputs, input) => {
     const mappingKeyIndex = mappingValues.findIndex((value) => value === input);
 
     if (mappingKeyIndex !== -1) {
@@ -194,3 +161,31 @@ export function rawToController(
     },
   }));
 }
+
+export const findNextInput = (
+  inputs: ControllerInput[],
+  currentIndex: number,
+  newTime: number,
+) => {
+  for (let i = currentIndex; i < inputs.length; i++) {
+    const input = inputs[i];
+
+    if (input.time >= newTime) {
+      return { input, index: i };
+    }
+  }
+
+  return { input: inputs[inputs.length - 1], index: inputs.length - 1 };
+};
+
+export const renderNextInput = (
+  current: ControllerInput,
+  next: ControllerInput,
+  key: keyof ControllerInput,
+  set: (v: any) => void,
+) => {
+  // Render the next input only if it has changed
+  if (!equal(current[key], next[key])) {
+    set(next[key]);
+  }
+};
