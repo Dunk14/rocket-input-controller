@@ -1,18 +1,13 @@
-import clsx from "clsx";
-import { ControllerProps } from "../..";
-import { isColor } from "../../../../tools/colors";
-import { type StartAndSelect } from "../../../../tools/inputs";
-import { Select, Start, StartAndSelect as StartAndSelectDiv } from "./style";
+import clsx from 'clsx'
+import { ControllerProps } from '../..'
+import { isColor } from '../../../../tools/colors'
+import { type StartAndSelect } from '../../../../tools/inputs'
+import { Select, Start, StartAndSelect as StartAndSelectDiv } from './style'
 
-export type StartAndSelectProps =
-  & Pick<ControllerProps, "color">
-  & StartAndSelect;
+export type StartAndSelectProps = Pick<ControllerProps, 'color'> &
+  StartAndSelect
 
-export function StartAndSelect({
-  color,
-  start,
-  select,
-}: StartAndSelectProps) {
+export function StartAndSelect({ color, start, select }: StartAndSelectProps) {
   return (
     <StartAndSelectDiv>
       <Start
@@ -25,5 +20,5 @@ export function StartAndSelect({
         style={{ opacity: select ? 1 : 0 }}
       />
     </StartAndSelectDiv>
-  );
+  )
 }

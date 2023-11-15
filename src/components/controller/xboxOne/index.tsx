@@ -1,13 +1,13 @@
-import clsx from "clsx";
-import { ControllerProps } from "..";
-import { isColor } from "../../../tools/colors";
-import { Bumpers } from "./bumpers";
-import { Dpad } from "./dpad";
-import { Face } from "./face";
-import { StartAndSelect } from "./start-and-select";
-import { Sticks } from "./sticks";
-import { Base, Container } from "./style";
-import { Triggers } from "./triggers";
+import clsx from 'clsx'
+import { ControllerProps } from '..'
+import { isColor } from '../../../tools/colors'
+import { Bumpers } from './bumpers'
+import { Dpad } from './dpad'
+import { Face } from './face'
+import { StartAndSelect } from './start-and-select'
+import { Sticks } from './sticks'
+import { Base, Container } from './style'
+import { Triggers } from './triggers'
 
 export function XboxOneController({
   style,
@@ -18,7 +18,7 @@ export function XboxOneController({
   startAndSelect,
   sticks,
   triggers,
-}: Omit<ControllerProps, "type">) {
+}: Omit<ControllerProps, 'type'>) {
   return (
     <Container style={style}>
       <Base className={clsx(isColor(color))} />
@@ -30,5 +30,5 @@ export function XboxOneController({
       <Face color={color} {...face} />
       <Sticks color={color} {...sticks} />
     </Container>
-  );
+  )
 }

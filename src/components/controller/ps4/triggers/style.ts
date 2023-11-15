@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const Triggers = styled.div`
   display: flex;
@@ -7,7 +7,7 @@ export const Triggers = styled.div`
   width: 588px;
   left: 50%;
   transform: translate(-50%, 0px);
-`;
+`
 
 export const Trigger = styled.div`
   /* Half of image */
@@ -15,18 +15,18 @@ export const Trigger = styled.div`
   height: 91px;
 
   &.white {
-    background-image: url("/ps4/white/triggers.svg");
+    background-image: url('/ps4/white/triggers.svg');
   }
-  
+
   &.black {
-    background-image: url("/ps4/black/triggers.svg");
+    background-image: url('/ps4/black/triggers.svg');
   }
-  
+
   &.left {
     background-position-x: left;
   }
-  
+
   &.right {
     background-position-x: right;
   }
-`;
+`

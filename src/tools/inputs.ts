@@ -1,91 +1,91 @@
-import equal from "fast-deep-equal";
-import { ControllerInputs, ControllerMapping } from "../services/inputs";
-import { getBoolean, getNumber } from "./values";
+import equal from 'fast-deep-equal'
+import { ControllerInputs, ControllerMapping } from '../services/inputs'
+import { getBoolean, getNumber } from './values'
 
 export type RawInput = {
-  time: number;
-  throttle: number;
-  jump: boolean;
-  boost: boolean;
-  dodgeForward: number;
-  dodgeStrafe: number;
-  handBrake: boolean;
-  roll: number;
-  directionalAirRoll: boolean;
-};
+  time: number
+  throttle: number
+  jump: boolean
+  boost: boolean
+  dodgeForward: number
+  dodgeStrafe: number
+  handBrake: boolean
+  roll: number
+  directionalAirRoll: boolean
+}
 
 export function parseRawInputs(csv: { [key: string]: unknown }[]) {
   return csv.map(
     ({ time, jump, boost, handBrake, directionalAirRoll, ...rest }) => ({
       time: Number(time) * 0.0000001,
-      jump: jump === "1",
-      boost: boost === "1",
-      handBrake: handBrake === "1",
-      directionalAirRoll: directionalAirRoll === "1",
+      jump: jump === '1',
+      boost: boost === '1',
+      handBrake: handBrake === '1',
+      directionalAirRoll: directionalAirRoll === '1',
       ...Object.entries(rest).reduce<{ [key: string]: number }>(
         (acc, [key, value]) => {
-          acc[key] = Number(value);
-          return acc;
+          acc[key] = Number(value)
+          return acc
         },
         {},
       ),
     }),
-  ) as RawInput[];
+  ) as RawInput[]
 }
 
 export type Bumpers = {
-  left?: boolean;
-  right?: boolean;
-};
+  left?: boolean
+  right?: boolean
+}
 
 export type Dpad = {
-  up?: boolean;
-  down?: boolean;
-  left?: boolean;
-  right?: boolean;
-};
+  up?: boolean
+  down?: boolean
+  left?: boolean
+  right?: boolean
+}
 
 export type Face = {
-  up?: boolean;
-  down?: boolean;
-  left?: boolean;
-  right?: boolean;
-};
+  up?: boolean
+  down?: boolean
+  left?: boolean
+  right?: boolean
+}
 
 export type StartAndSelect = {
-  start?: boolean;
-  select?: boolean;
-};
+  start?: boolean
+  select?: boolean
+}
 
 export type Axis2D = {
-  x: number;
-  y: number;
-};
+  x: number
+  y: number
+}
 
 export type Stick = {
-  value: Axis2D;
-  pressed?: boolean;
-};
+  value: Axis2D
+  pressed?: boolean
+}
 
 export type Sticks = {
-  left?: Stick;
-  right?: Stick;
-};
+  left?: Stick
+  right?: Stick
+}
 
 export type Triggers = {
-  left?: number;
-  right?: number;
-};
+  left?: number
+  right?: number
+}
 
 export type ControllerInput = {
-  time: number;
-  bumpers?: Bumpers;
-  dpad?: Dpad;
-  face?: Face;
-  startAndSelect?: StartAndSelect;
-  sticks?: Sticks;
-  triggers?: Triggers;
-};
+  time: number
+  bumpers?: Bumpers
+  dpad?: Dpad
+  face?: Face
+  startAndSelect?: StartAndSelect
+  sticks?: Sticks
+  triggers?: Triggers
+}
 
 export function rawToController(
   rawInputs: RawInput[],
@@ -93,23 +93,21 @@ export function rawToController(
 ): ControllerInput[] {
   const mappingKeys = Object.keys(
     controllerMapping,
-  ) as (keyof ControllerMapping)[];
-  const mappingValues = Object.values(controllerMapping);
+  ) as (keyof ControllerMapping)[]
+  const mappingValues = Object.values(controllerMapping)
 
   // Get each input mapped by user
-  const inputMapping = Object.values(ControllerInputs).reduce<
-    {
-      [key in ControllerInputs]?: keyof ControllerMapping;
-    }
-  >((inputs, input) => {
-    const mappingKeyIndex = mappingValues.findIndex((value) => value === input);
+  const inputMapping = Object.values(ControllerInputs).reduce<{
+    [key in ControllerInputs]?: keyof ControllerMapping
+  }>((inputs, input) => {
+    const mappingKeyIndex = mappingValues.findIndex((value) => value === input)
 
     if (mappingKeyIndex !== -1) {
-      inputs[input] = mappingKeys[mappingKeyIndex];
+      inputs[input] = mappingKeys[mappingKeyIndex]
     }
 
-    return inputs;
-  }, {});
+    return inputs
+  }, {})
 
   return rawInputs.map((input) => ({
     time: input.time,
@@ -159,7 +157,7 @@ export function rawToController(
       left: getNumber(input, inputMapping[ControllerInputs.TriggerLeft]),
       right: getNumber(input, inputMapping[ControllerInputs.TriggerRight]),
     },
-  }));
+  }))
 }
 
 export const findNextInput = (
@@ -168,15 +166,15 @@ export const findNextInput = (
   newTime: number,
 ) => {
   for (let i = currentIndex; i < inputs.length; i++) {
-    const input = inputs[i];
+    const input = inputs[i]
 
     if (input.time >= newTime) {
-      return { input, index: i };
+      return { input, index: i }
     }
   }
 
-  return { input: inputs[inputs.length - 1], index: inputs.length - 1 };
-};
+  return { input: inputs[inputs.length - 1], index: inputs.length - 1 }
+}
 
 export const renderNextInput = (
   current: ControllerInput,
@@ -186,6 +184,6 @@ export const renderNextInput = (
 ) => {
   // Render the next input only if it has changed
   if (!equal(current[key], next[key])) {
-    set(next[key]);
+    set(next[key])
   }
-};
+}

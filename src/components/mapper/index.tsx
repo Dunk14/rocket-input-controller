@@ -1,44 +1,43 @@
-import clsx from "clsx";
-import { Field, Form, Formik } from "formik";
+import clsx from 'clsx'
+import { Field, Form, Formik } from 'formik'
 import {
   ControllerInputs,
   type ControllerMapping,
   OptionalControllerInputs,
   saveControllerMapping,
-} from "../../services/inputs";
-import "./index.css";
+} from '../../services/inputs'
+import './index.css'
 
 type ControllerMapperProps = {
-  showMapper: boolean;
-  mapping: ControllerMapping;
-  setMapping: (mapping: ControllerMapping) => void;
-};
+  showMapper: boolean
+  mapping: ControllerMapping
+  setMapping: (mapping: ControllerMapping) => void
+}
 
-export function ControllerMapper(
-  { showMapper, mapping, setMapping }: ControllerMapperProps,
-) {
+export function ControllerMapper({
+  showMapper,
+  mapping,
+  setMapping,
+}: ControllerMapperProps) {
   return (
-    <div className={clsx("mapper", { hidden: !showMapper })}>
+    <div className={clsx('mapper', { hidden: !showMapper })}>
       <Formik
         initialValues={mapping}
-        onSubmit={async (newMapping, { resetForm }) => {
-          await saveControllerMapping(newMapping);
-          setMapping(newMapping);
-          resetForm({ values: newMapping });
+        enableReinitialize
+        onSubmit={async (newMapping) => {
+          await saveControllerMapping(newMapping)
+          setMapping(newMapping)
         }}
       >
         {({ values: mappingKeys, dirty }) => (
-          <Form className={clsx("form", { slide: showMapper })}>
+          <Form className={clsx('form', { slide: showMapper })}>
             <div className="values">
               {Object.keys(mappingKeys).map((mappingKey) => (
                 <div key={mappingKey} className="value">
                   <label htmlFor={mappingKey}>{mappingKey}</label>
 
-                  <Field
-                    as="select"
-                    name={mappingKey}
-                  >
-                    {["airRollLeft", "airRollRight"].includes(mappingKey) && (
+                  <Field as="select" name={mappingKey}>
+                    {['airRollLeft', 'airRollRight'].includes(mappingKey) && (
                       <option
                         className="no-binding"
                         value={OptionalControllerInputs.None}
@@ -48,10 +47,7 @@ export function ControllerMapper(
                     )}
 
                     {Object.values(ControllerInputs).map((input) => (
-                      <option
-                        key={input}
-                        value={input}
-                      >
+                      <option key={input} value={input}>
                         {input}
                       </option>
                     ))}
@@ -60,10 +56,8 @@ export function ControllerMapper(
               ))}
             </div>
 
-            <div className={clsx("reset-submit", { hidden: !dirty })}>
-              <button type="reset">
-                Reset
-              </button>
+            <div className={clsx('reset-submit', { hidden: !dirty })}>
+              <button type="reset">Reset</button>
 
               <button type="submit">Submit</button>
             </div>
@@ -71,5 +65,5 @@ export function ControllerMapper(
         )}
       </Formik>
     </div>
-  );
+  )
 }

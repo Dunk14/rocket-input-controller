@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const Sticks = styled.div`
   display: flex;
@@ -9,7 +9,7 @@ export const Sticks = styled.div`
   top: 240px;
   left: 329px;
   transform: translate(-50%, 0px);
-`;
+`
 
 export const Stick = styled.div`
   position: absolute;
@@ -19,11 +19,11 @@ export const Stick = styled.div`
   transition: transform 0.15s;
 
   &.white {
-    background-image: url("/xboxOne/sticks.svg");
+    background-image: url('/xboxOne/sticks.svg');
   }
 
   &.black {
-    background-image: url("/xboxOne/sticks.svg");
+    background-image: url('/xboxOne/sticks.svg');
   }
 
   &.left {
@@ -45,4 +45,4 @@ export const Stick = styled.div`
   &.right.pressed {
     background-position-x: left;
   }
-`;
+`

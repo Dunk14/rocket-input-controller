@@ -1,17 +1,17 @@
-import clsx from "clsx";
-import { ControllerProps } from "../..";
-import { isColor } from "../../../../tools/colors";
-import { type Sticks } from "../../../../tools/inputs";
-import { Stick, Sticks as SticksDiv } from "./style";
+import clsx from 'clsx'
+import { ControllerProps } from '../..'
+import { isColor } from '../../../../tools/colors'
+import { type Sticks } from '../../../../tools/inputs'
+import { Stick, Sticks as SticksDiv } from './style'
 
-export type SticksProps = Pick<ControllerProps, "color"> & Sticks;
+export type SticksProps = Pick<ControllerProps, 'color'> & Sticks
 
 export function Sticks({ color, left, right }: SticksProps) {
   if (!left) {
-    left = { value: { x: 0, y: 0 } };
+    left = { value: { x: 0, y: 0 } }
   }
   if (!right) {
-    right = { value: { x: 0, y: 0 } };
+    right = { value: { x: 0, y: 0 } }
   }
 
   return (
@@ -25,7 +25,7 @@ export function Sticks({ color, left, right }: SticksProps) {
               rotateX(${left.value.y * -30}deg)
               rotateY(${left.value.x * -30}deg)`,
         }}
-        className={clsx("left", isColor(color), {
+        className={clsx('left', isColor(color), {
           pressed: left.pressed,
         })}
       />
@@ -39,10 +39,10 @@ export function Sticks({ color, left, right }: SticksProps) {
               rotateX(${right.value.y * -30}deg)
               rotateY(${right.value.x * -30}deg)`,
         }}
-        className={clsx("right", isColor(color), {
+        className={clsx('right', isColor(color), {
           pressed: right.pressed,
         })}
       />
     </SticksDiv>
-  );
+  )
 }

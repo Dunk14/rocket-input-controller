@@ -45,7 +45,7 @@ select {
   margin-top: 0.25rem;
 }
 
-button[type="submit"] {
+button[type='submit'] {
   width: 16rem;
   background-color: #282b66;
 }

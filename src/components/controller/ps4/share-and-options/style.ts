@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled, { css } from 'styled-components'
 
 export const ShareAndOptions = styled.div`
   display: flex;
@@ -8,15 +8,15 @@ export const ShareAndOptions = styled.div`
   width: 354px;
   top: 141px;
   transform: translate(-50%, 0px);
-`;
+`
 
 const whiteImage = css`
-  background-image: url("/ps4/white/start.svg");
-`;
+  background-image: url('/ps4/white/start.svg');
+`
 
 const blackImage = css`
-  background-image: url("/ps4/black/start.svg");
-`;
+  background-image: url('/ps4/black/start.svg');
+`
 
 const commonStyle = css`
   width: 30px;
@@ -31,13 +31,13 @@ const commonStyle = css`
   &.black {
     ${blackImage}
   }
-`;
+`
 
 export const Share = styled.div`
   ${commonStyle}
-`;
+`
 
 export const Options = styled.div`
   background-position-x: right;
   ${commonStyle}
-`;
+`

@@ -1,3 +1,3 @@
-declare module "*.csv" {
-  export default <{[key: string]: any}[]>[];
+declare module '*.csv' {
+  export default <{ [key: string]: any }[]>[]
 }

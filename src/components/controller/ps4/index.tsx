@@ -1,22 +1,23 @@
-import clsx from "clsx";
-import { ControllerProps } from "..";
-import { isColor } from "../../../tools/colors";
-import { Bumpers } from "./bumpers";
-import { Dpad } from "./dpad";
-import { Face } from "./face";
-import { ShareAndOptions } from "./share-and-options";
-import { Sticks } from "./sticks";
-import { Base, Container } from "./style";
-import { Triggers } from "./triggers";
+import clsx from 'clsx'
+import { ControllerProps } from '..'
+import { isColor } from '../../../tools/colors'
+import { Bumpers } from './bumpers'
+import { Dpad } from './dpad'
+import { Face } from './face'
+import { ShareAndOptions } from './share-and-options'
+import { Sticks } from './sticks'
+import { Base, Container } from './style'
+import { Triggers } from './triggers'
 
-export type PS4ControllerProps =
-  & Omit<ControllerProps, "type" | "startAndSelect">
-  & {
-    shareAndOptions?: {
-      share?: boolean;
-      options?: boolean;
-    };
-  };
+export type PS4ControllerProps = Omit<
+  ControllerProps,
+  'type' | 'startAndSelect'
+> & {
+  shareAndOptions?: {
+    share?: boolean
+    options?: boolean
+  }
+}
 
 export function PS4Controller({
   style,
@@ -39,5 +40,5 @@ export function PS4Controller({
       <Face color={color} {...face} />
       <Sticks color={color} {...sticks} />
     </Container>
-  );
+  )
 }

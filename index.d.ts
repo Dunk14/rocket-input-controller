@@ -1,2 +1,7 @@
+export * from './src/components/controller'
+export * from './src/components/operator'
+export * from './src/services/controller'
+export * from './src/services/inputs'
+export * from './src/tools/colors'
 export * from './src/tools/inputs'
-
+export * from './src/tools/values'

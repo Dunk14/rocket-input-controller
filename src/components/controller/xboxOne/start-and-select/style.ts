@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled, { css } from 'styled-components'
 
 export const StartAndSelect = styled.div`
   display: flex;
@@ -8,15 +8,15 @@ export const StartAndSelect = styled.div`
   width: 158px;
   top: 255px;
   transform: translate(-50%, 0px);
-`;
+`
 
 const whiteImage = css`
-  background-image: url("/xboxOne/start.svg");
-`;
+  background-image: url('/xboxOne/start.svg');
+`
 
 const blackImage = css`
-  background-image: url("/xboxOne/start.svg");
-`;
+  background-image: url('/xboxOne/start.svg');
+`
 
 const commonStyle = css`
   width: 50px;
@@ -32,13 +32,13 @@ const commonStyle = css`
   &.black {
     ${blackImage}
   }
-`;
+`
 
 export const Start = styled.div`
   ${commonStyle}
-`;
+`
 
 export const Select = styled.div`
   background-position-x: right;
   ${commonStyle}
-`;
+`

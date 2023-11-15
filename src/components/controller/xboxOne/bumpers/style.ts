@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const Bumpers = styled.div`
   display: flex;
@@ -8,7 +8,7 @@ export const Bumpers = styled.div`
   width: 536px;
   top: 128px;
   transform: translate(-50%, 0px);
-`;
+`
 
 export const Bumper = styled.div`
   background-image: url(/xboxOne/bumper.svg);
@@ -18,4 +18,4 @@ export const Bumper = styled.div`
   &.right {
     transform: scaleX(-1);
   }
-`;
+`

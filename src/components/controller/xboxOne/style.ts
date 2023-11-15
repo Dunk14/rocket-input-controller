@@ -1,9 +1,9 @@
-import { styled } from "styled-components";
+import { styled } from 'styled-components'
 
 export const Container = styled.div`
   display: flex;
   position: relative;
-`;
+`
 
 /* Base */
 
@@ -12,10 +12,10 @@ export const Base = styled.div`
   height: 630px;
 
   &.white {
-    background-image: url("/xboxOne/base-white.svg");
+    background-image: url('/xboxOne/base-white.svg');
   }
 
   &.black {
-    background-image: url("/xboxOne/base-black.svg");
+    background-image: url('/xboxOne/base-black.svg');
   }
-`;
+`
