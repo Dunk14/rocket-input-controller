@@ -1,7 +1,7 @@
-import { CSSProperties } from 'react'
-import { ControllerType } from '../../services/controller'
-import { Color } from '../../tools/colors'
-import {
+import { type CSSProperties } from 'react'
+import { ControllerType } from '~/services/controller'
+import { type Color } from '~/tools/colors'
+import type {
   Bumpers,
   Dpad,
   Face,
@@ -11,9 +11,6 @@ import {
 } from '../../tools/inputs'
 import { PS4Controller } from './ps4'
 import { XboxOneController } from './xboxOne'
-
-export * from './ps4'
-export * from './xboxOne'
 
 export type ControllerProps = {
   type: ControllerType

@@ -1,8 +1,8 @@
 import clsx from 'clsx'
-import { ControllerProps } from '../..'
-import { isColor } from '../../../../tools/colors'
-import { type Bumpers } from '../../../../tools/inputs'
+import { isColor } from '~/tools/colors'
+import { type Bumpers } from '~/tools/inputs'
 import { Bumper, Bumpers as BumpersDiv } from './style'
+import { type ControllerProps } from '../..'
 
 export type BumpersProps = Pick<ControllerProps, 'color'> & Bumpers
 

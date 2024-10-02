@@ -10,15 +10,18 @@
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
-    "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
+    "declaration": true,
 
     /* Linting */
     "strict": true,
     "noFallthroughCasesInSwitch": true,
 
-    "typeRoots": ["src/@types"]
+    "typeRoots": ["src/@types"],
+    "paths": {
+      "~/*": ["./src/*"]
+    }
   },
   "include": ["src"],
   "references": [{ "path": "./tsconfig.node.json" }]

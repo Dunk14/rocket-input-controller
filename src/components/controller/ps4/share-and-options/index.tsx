@@ -1,7 +1,7 @@
 import clsx from 'clsx'
-import { ControllerProps } from '../..'
-import { isColor } from '../../../../tools/colors'
+import { isColor } from '~/tools/colors'
 import { Options, Share, ShareAndOptions as ShareAndOptionsDiv } from './style'
+import { type ControllerProps } from '../..'
 
 export type ShareAndOptionsProps = Pick<ControllerProps, 'color'> & {
   share?: boolean

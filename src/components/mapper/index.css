@@ -46,6 +46,10 @@
   align-items: flex-start;
 }
 
+.value label {
+  color: rgba(255, 255, 255, .5);
+}
+
 .no-binding {
   color: rgb(80, 80, 80);
   opacity: 0.5;

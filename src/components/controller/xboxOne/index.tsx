@@ -1,6 +1,6 @@
 import clsx from 'clsx'
-import { ControllerProps } from '..'
-import { isColor } from '../../../tools/colors'
+import { isColor } from '~/tools/colors'
+import type { ControllerProps } from '..'
 import { Bumpers } from './bumpers'
 import { Dpad } from './dpad'
 import { Face } from './face'

@@ -1,5 +1,5 @@
 import equal from 'fast-deep-equal'
-import { ControllerInputs, ControllerMapping } from '../services/inputs'
+import { ControllerInputs, type ControllerMapping } from '~/services/inputs'
 import { getBoolean, getNumber } from './values'
 
 export type RawInput = {
@@ -176,11 +176,13 @@ export const findNextInput = (
   return { input: inputs[inputs.length - 1], index: inputs.length - 1 }
 }
 
-export const renderNextInput = (
+export const renderNextInput = <T extends keyof ControllerInput>(
   current: ControllerInput,
   next: ControllerInput,
-  key: keyof ControllerInput,
-  set: (v: any) => void,
+  key: T,
+  set: React.Dispatch<
+    React.SetStateAction<ControllerInput[T]>
+  >,
 ) => {
   // Render the next input only if it has changed
   if (!equal(current[key], next[key])) {

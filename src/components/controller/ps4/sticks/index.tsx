@@ -1,8 +1,8 @@
 import clsx from 'clsx'
-import { ControllerProps } from '../..'
-import { isColor } from '../../../../tools/colors'
-import { type Sticks } from '../../../../tools/inputs'
+import { isColor } from '~/tools/colors'
+import { type Sticks } from '~/tools/inputs'
 import { Stick, Sticks as SticksDiv } from './style'
+import { type ControllerProps } from '../..'
 
 export type SticksProps = Pick<ControllerProps, 'color'> & Sticks
 

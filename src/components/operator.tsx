@@ -1,19 +1,19 @@
 import { CSSProperties, useEffect, useState } from 'react'
-import { type ControllerTypeAndColor as ControllerType } from '../services/controller'
-import { ControllerMapping } from '../services/inputs'
+import { type ControllerTypeAndColor as ControllerType } from '~/services/controller'
+import { type ControllerMapping } from '~/services/inputs'
 import {
-  Bumpers,
-  ControllerInput,
-  Dpad,
-  Face,
+  type Bumpers,
+  type ControllerInput,
+  type Dpad,
+  type Face,
   findNextInput,
   parseRawInputs,
   rawToController,
   renderNextInput,
-  StartAndSelect,
-  Sticks,
-  Triggers,
-} from '../tools/inputs'
+  type StartAndSelect,
+  type Sticks,
+  type Triggers,
+} from '~/tools/inputs'
 import { Controller } from './controller'
 
 export type OperatorProps = {
@@ -40,7 +40,7 @@ export type OperatorProps = {
 export function ControllerOperator({
   csv,
   currentTime,
-  controller,
+  controller: { type, color },
   mapping,
   style,
   playing,
@@ -60,12 +60,12 @@ export function ControllerOperator({
 
   // Clock utils
   const [time, setTime] = useState(0)
-  const [interval, setIntervall] = useState<number>()
+  const [interval, setIntervall] = useState<NodeJS.Timeout>()
 
   // Process CSV data
   useEffect(() => {
     setInputs(rawToController(parseRawInputs(csv), mapping))
-  }, [mapping])
+  }, [csv, mapping])
 
   // Manage the start and stop of clock
   useEffect(() => {
@@ -92,11 +92,14 @@ export function ControllerOperator({
     }
 
     return () => clearInterval(interval)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [playing, interval, currentTime])
 
   // Display each input
   useEffect(() => {
     if (!playing || !inputs.length) return
+
+    // Reset time and index when reach the end
     if (index >= inputs.length - 1) {
       setTime(0)
       setIndex(0)
@@ -114,13 +117,14 @@ export function ControllerOperator({
     renderNextInput(current, next.input, 'triggers', setTriggers)
 
     setIndex(next.index)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [time])
 
   return (
     <div className="operator" style={style}>
       <Controller
-        type={controller.type}
-        color={controller.color}
+        type={type}
+        color={color}
         bumpers={bumpers}
         dpad={dpad}
         face={face}

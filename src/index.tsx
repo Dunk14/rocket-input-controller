@@ -1,32 +1,33 @@
 import { useEffect, useState } from 'react'
-import csv from './assets/test.csv'
-import { ControllerMapper } from './components/mapper'
-import { ControllerOperator } from './components/operator'
-import { Player } from './components/player'
+import csv from '~/assets/test.csv'
+import { ControllerMapper } from '~/components/mapper'
+import { ControllerOperator } from '~/components/operator'
+import { Player } from '~/components/player'
 import './index.css'
 import {
   ControllerTypeAndColor,
   ControllerType,
   getController,
   saveController,
-} from './services/controller'
+} from '~/services/controller'
 import {
   ControllerMapping,
   defaultMapping,
   getControllerMapping,
   saveControllerMapping,
-} from './services/inputs'
-import { Color } from './tools/colors'
+} from '~/services/inputs'
+import { Color } from '~/tools/colors'
 
 function RocketInputController() {
   const [controller, setController] = useState<ControllerTypeAndColor>()
   const [mapping, setMapping] = useState<ControllerMapping>()
 
   useEffect(() => {
-    ;(async () => {
+    async function _() {
       setController(await getController())
       setMapping(await getControllerMapping())
-    })()
+    }
+    _()
   }, [])
 
   const [showMapper, setShowMapper] = useState(false)

@@ -1,8 +1,8 @@
 import clsx from 'clsx'
-import { ControllerProps } from '../..'
-import { isColor } from '../../../../tools/colors'
-import { type Triggers } from '../../../../tools/inputs'
+import { isColor } from '~/tools/colors'
+import { type Triggers } from '~/tools/inputs'
 import { Trigger, Triggers as TriggersDiv } from './style'
+import { type ControllerProps } from '../..'
 
 export type TriggersProps = Pick<ControllerProps, 'color'> & Triggers
 

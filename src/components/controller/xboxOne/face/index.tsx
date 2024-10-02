@@ -1,8 +1,8 @@
 import clsx from 'clsx'
-import { ControllerProps } from '../..'
-import { isColor } from '../../../../tools/colors'
-import { type Face } from '../../../../tools/inputs'
+import { isColor } from '~/tools/colors'
+import { type Face } from '~/tools/inputs'
 import { Face as FaceDiv, Faces } from './style'
+import { type ControllerProps } from '../..'
 
 export type FaceProps = Pick<ControllerProps, 'color'> & Face
 

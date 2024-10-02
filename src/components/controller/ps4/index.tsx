@@ -1,6 +1,5 @@
 import clsx from 'clsx'
-import { ControllerProps } from '..'
-import { isColor } from '../../../tools/colors'
+import { isColor } from '~/tools/colors'
 import { Bumpers } from './bumpers'
 import { Dpad } from './dpad'
 import { Face } from './face'
@@ -8,6 +7,7 @@ import { ShareAndOptions } from './share-and-options'
 import { Sticks } from './sticks'
 import { Base, Container } from './style'
 import { Triggers } from './triggers'
+import { type ControllerProps } from '..'
 
 export type PS4ControllerProps = Omit<
   ControllerProps,

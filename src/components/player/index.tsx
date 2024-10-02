@@ -1,6 +1,6 @@
 import { useRef } from 'react'
 import ReactPlayer from 'react-player'
-import video from '../../assets/test.mp4'
+import video from '~/assets/test.mp4'
 import './index.css'
 
 export type PlayerProps = {

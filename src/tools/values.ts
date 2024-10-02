@@ -1,5 +1,5 @@
-import { ControllerMapping } from '../services/inputs'
-import { RawInput } from './inputs'
+import { type ControllerMapping } from '~/services/inputs'
+import { type RawInput } from './inputs'
 
 function getValue(
   input: RawInput,

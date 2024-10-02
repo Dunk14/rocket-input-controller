@@ -47,5 +47,6 @@ select {
 
 button[type='submit'] {
   width: 16rem;
+  color: white;
   background-color: #282b66;
 }

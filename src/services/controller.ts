@@ -1,5 +1,5 @@
 import localforage from 'localforage'
-import { Color } from '../tools/colors'
+import { Color } from '~/tools/colors'
 
 export enum ControllerType {
   PS4 = 'ps4',

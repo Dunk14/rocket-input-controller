@@ -1,8 +1,8 @@
 import clsx from 'clsx'
-import { ControllerProps } from '../..'
-import { isColor } from '../../../../tools/colors'
-import { type Dpad } from '../../../../tools/inputs'
+import { isColor } from '~/tools/colors'
+import { type Dpad } from '~/tools/inputs'
 import { Container, Dpad as DpadDiv } from './style'
+import { type ControllerProps } from '../..'
 
 export type DpadProps = Pick<ControllerProps, 'color'> & Dpad
 

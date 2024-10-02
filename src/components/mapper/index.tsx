@@ -5,7 +5,7 @@ import {
   type ControllerMapping,
   OptionalControllerInputs,
   saveControllerMapping,
-} from '../../services/inputs'
+} from '~/services/inputs'
 import './index.css'
 
 type ControllerMapperProps = {

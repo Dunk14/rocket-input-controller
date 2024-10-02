@@ -1,8 +1,8 @@
 import clsx from 'clsx'
-import { ControllerProps } from '../..'
-import { isColor } from '../../../../tools/colors'
-import { type StartAndSelect } from '../../../../tools/inputs'
+import { isColor } from '~/tools/colors'
+import { type StartAndSelect } from '~/tools/inputs'
 import { Select, Start, StartAndSelect as StartAndSelectDiv } from './style'
+import { type ControllerProps } from '../..'
 
 export type StartAndSelectProps = Pick<ControllerProps, 'color'> &
   StartAndSelect
