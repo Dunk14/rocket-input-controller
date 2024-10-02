@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import RocketInputController from './'
+import RocketInputController from './index.tsx'
 import './main.css'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
