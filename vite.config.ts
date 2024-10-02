@@ -12,12 +12,14 @@ export default defineConfig({
     },
   },
   build: {
+    minify: false,
     lib: {
-      entry: path.resolve(__dirname, 'src/components/operator.tsx'),
+      entry: path.resolve(__dirname, 'src/index.ts'),
       name: 'rocket-input-controller',
     },
     rollupOptions: {
       external: [
+        /.*\.css/,
         'react',
         'react-dom',
         'styled-components',
@@ -33,9 +35,8 @@ export default defineConfig({
     react(),
     dsv(),
     dst({
-      rollupTypes: true,
-      include: ['src/components', 'src/services', 'src/tools'],
-      exclude: 'src/components/player',
+      include: ['src/index.ts', 'src/components', 'src/services', 'src/tools'],
+      exclude: ['src/components/mapper', 'src/components/player'],
     }),
   ],
 })
